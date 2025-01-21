@@ -1,3 +1,5 @@
+
+
 1.Sensitive Files and Data Exposure📜
 intitle:"index of"
 intext:"aws_access_key_id" | intext:"aws_secret_access_key" filetype:json | filetype:yaml | filetype:yml
@@ -105,4 +107,5 @@ inurl:action=
 inurl:sid=
 inurl:dir=
 
-
+5. extra
+inurl:database
