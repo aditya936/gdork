@@ -67,56 +67,57 @@
         <div id="output"></div>
     </div>
 
-    <script>
-        async function loadDorks() {
-            const response = await fetch('dorks.txt');
-            const text = await response.text();
-            const categories = text.split(/\n\d\./).slice(1); // Split categories
-            const outputDiv = document.getElementById('output');
-            outputDiv.innerHTML = '';
+ <script>
+    async function loadDorks() {
+        const response = await fetch('dorks.txt');
+        const text = await response.text();
+        const categories = text.split(/\n(?=\d\.)/).filter(section => section.trim() !== ''); // Split categories robustly
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = '';
 
-            categories.forEach((category, index) => {
-                const [categoryName, ...dorks] = category.split(/\n/).filter(line => line.trim() !== '');
-                const textareaId = `category-${index + 1}`;
+        categories.forEach((category, index) => {
+            const [categoryName, ...dorks] = category.split(/\n/).filter(line => line.trim() !== '');
+            const textareaId = `category-${index + 1}`;
 
-                const categoryDiv = document.createElement('div');
-                categoryDiv.className = 'category';
-                categoryDiv.innerHTML = `
-                    <h2>${index + 1}. ${categoryName.trim()}</h2>
-                    <textarea id="${textareaId}" readonly>${dorks.join('\n')}</textarea>
-                `;
-                outputDiv.appendChild(categoryDiv);
-            });
+            const categoryDiv = document.createElement('div');
+            categoryDiv.className = 'category';
+            categoryDiv.innerHTML = `
+                <h2>${index + 1}. ${categoryName.trim()}</h2>
+                <textarea id="${textareaId}" readonly>${dorks.join('\n')}</textarea>
+            `;
+            outputDiv.appendChild(categoryDiv);
+        });
+    }
+
+    function addUrlPrefix() {
+        document.querySelectorAll('.category textarea').forEach(textarea => {
+            const dorks = textarea.value.split(/\n/);
+            textarea.value = dorks.map(dork => `https://www.google.com/search?q=${dork}`).join('\n');
+        });
+    }
+
+    function generateSubdomainQueries() {
+        const domain = document.getElementById('domain').value.trim();
+        if (!domain) {
+            alert('Please enter a domain!');
+            return;
         }
 
-        function addUrlPrefix() {
-            document.querySelectorAll('.category textarea').forEach(textarea => {
-                const dorks = textarea.value.split(/\n/);
-                textarea.value = dorks.map(dork => `https://www.google.com/search?q=${dork}`).join('\n');
-            });
-        }
+        const subdomainScope = `site:${domain}|site:*.${domain}|site:*.*.${domain}|site:*.*.*.${domain}|site:*.*.*.*.${domain}|site:*.*.*.*.*.${domain}`;
+        document.querySelectorAll('.category textarea').forEach(textarea => {
+            const dorks = textarea.value.split(/\n/);
+            textarea.value = dorks.map(dork => `${dork} ${subdomainScope}`).join('\n');
+        });
+    }
 
-        function generateSubdomainQueries() {
-            const domain = document.getElementById('domain').value.trim();
-            if (!domain) {
-                alert('Please enter a domain!');
-                return;
-            }
+    function clearOutput() {
+        document.querySelectorAll('.category textarea').forEach(textarea => {
+            textarea.value = '';
+        });
+    }
 
-            const subdomainScope = `site:${domain}|site:*.${domain}|site:*.*.${domain}|site:*.*.*.${domain}|site:*.*.*.*.${domain}|site:*.*.*.*.*.${domain}`;
-            document.querySelectorAll('.category textarea').forEach(textarea => {
-                const dorks = textarea.value.split(/\n/);
-                textarea.value = dorks.map(dork => `${dork} ${subdomainScope}`).join('\n');
-            });
-        }
+    window.onload = loadDorks;
+</script>
 
-        function clearOutput() {
-            document.querySelectorAll('.category textarea').forEach(textarea => {
-                textarea.value = '';
-            });
-        }
-
-        window.onload = loadDorks;
-    </script>
 </body>
 </html>
