@@ -103,7 +103,7 @@
             return;
         }
 
-        const subdomainScope = `site:${domain}|site:*.${domain}|site:*.*.${domain}|site:*.*.*.${domain}|site:*.*.*.*.${domain}|site:*.*.*.*.*.${domain}`;
+        const subdomainScope = `site:${domain} | site:*.${domain} | site:*.*.${domain} | site:*.*.*.${domain} | site:*.*.*.*.${domain} | site:*.*.*.*.*.${domain}`;
         document.querySelectorAll('.category textarea').forEach(textarea => {
             const dorks = textarea.value.split(/\n/);
             textarea.value = dorks.map(dork => `${dork} ${subdomainScope}`).join('\n');
