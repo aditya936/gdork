@@ -109,3 +109,25 @@ inurl:dir=
 
 5. extra
 inurl:database
+filetype:pdf "Assessment Report" nessus
+intitle:"parent directory"
+filetype:xls inurl:"email.xls"
+intext:"A syntax error has occurred" filetype:ihtml
+intext:"ASP.NET_SessionId" "data source="
+intext:"About Mac OS Personal Web Sharing"
+intext:"An illegal character has been found in the statement" -"previous message"
+intext:"Can't connect to local" intitle:warning
+intitle:warning
+intext:"HostingAccelerator"
+intext:"Thank you for your order" +receipt
+intext:"Thank you for your purchase" +download
+intext:"SQL Server Driver][SQL Server]Line 1: Incorrect syntax near"
+allintext:@gmail.com OR intext:"@outlook.com"
+intitle:"report" ("qualys" | "acunetix" | "nessus" | "netsparker" | "Arachni" | "nmap") filetype:html | ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv
+inurl:"ReportViewer.aspx"
+db.key OR server.key OR ftp.key OR exchange.key OR host.key OR mail.key
+intext:e10adc3949ba59abbe56e057f20f883e
+AndroidManifest ext:xml -github -gitlab -googlesource
+inurl:"plesk-stat"
+intitle:"Control Panel"
+intext:"GET http://" OR intext:"GET http://" ext:txt
