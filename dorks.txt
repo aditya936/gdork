@@ -110,9 +110,10 @@ inurl:dir=
 5. extra
 inurl:database
 filetype:pdf "Assessment Report" nessus
+allintext:"Assessment Report"
 intitle:"parent directory"
 filetype:xls inurl:"email.xls"
-intext:"A syntax error has occurred" filetype:ihtml
+intext:"A syntax error has occurred"
 intext:"ASP.NET_SessionId" "data source="
 intext:"About Mac OS Personal Web Sharing"
 intext:"An illegal character has been found in the statement" -"previous message"
