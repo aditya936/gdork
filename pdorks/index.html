@@ -104,25 +104,30 @@
     <div class="section-title">🔗 Links:</div>
     <textarea id="linksBox" readonly>
 https://cybersecuritywriteups.com/non-english-dorks-to-find-bug-bounty-vdp-programs-d799f0a5161c
+https://www.hhs.gov/vulnerability-disclosure-policy/index.html
+site-> https://kyber.nl/ -> Operating in accordance with -> iso27001 and gdpr 
+
     </textarea>
   </div>
 
   <div class="section">
     <div class="section-title">💡 Tips:</div>
     <textarea id="tipsBox" readonly>
-Top sites security.txt (I will create a bash script to automate this section, and I will post it soon!)
+"Last Updated: April"
+"use different region"
+[Top sites security.txt (I will create a bash script to automate this section, and I will post it soon!)
 
-3-1. Download top 1000000 domains from https://radar.cloudflare.com/domains
-3-2. Check security.txt and .well-known/security.txt for main domain
-3-3. Store these two paths in a paths file.
-3-4. Run the two commands below:
-cat domains | httpx -path paths -mc 200 -cl -ct -o result1
-cat domains | while read d; do echo "www.$d"; done | httpx -path paths -mc 200 -cl -ct -o result2
+  1. Download top 1000000 domains from https://radar.cloudflare.com/domains
+  2. Check security.txt and .well-known/security.txt for main domain
+  3. Store these two paths in a paths file.
+  4. Run the two commands below:
+     cat domains | httpx -path paths -mc 200 -cl -ct -o result1
+     cat domains | while read d; do echo "www.$d"; done | httpx -path paths -mc 200 -cl -ct -o result2 ]
     </textarea>
   </div>
   
  <div class="repo">
-    🔗 Created by <a href="https://github.com/aditya936/gdork/tree/main/pdorks" target="_blank">repo</a>
+    🔗 repo link <a href="https://github.com/aditya936/gdork/tree/main/pdorks" target="_blank">repo</a>
   </div>
   <div class="credit">
     🔗 Created by <a href="https://x.com/enterlectury" target="_blank">@enterlectury</a>
