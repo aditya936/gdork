@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Find Latest Bug Bounty Programs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+      padding: 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    select, button {
+      padding: 10px 15px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+    }
+    textarea {
+      width: 95%;
+      height: 140px;
+      margin: 10px auto 20px auto;
+      display: block;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      background-color: #ffffff;
+    }
+    .section {
+      margin-bottom: 30px;
+      padding: 10px;
+      border-top: 2px dashed #999;
+    }
+    .section-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    #openTabsBtn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: -10px;
+    }
+    #openTabsBtn:hover {
+      background-color: #218838;
+    }
+    .center {
+      text-align: center;
+    }
+    .credit {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 15px;
+      color: #444;
+    }
+    .credit a {
+      color: #0d47a1;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Find Latest Bug Bounty Programs</h1>
+
+  <div class="center">
+    <label for="timeFilter">Select Time Filter:</label>
+    <select id="timeFilter">
+      <option value="h">Last Hour</option>
+      <option value="d">Last Day</option>
+      <option value="w" selected>Last Week</option>
+      <option value="y">Last Year</option>
+    </select>
+    <button onclick="generateUrls()">Generate URLs</button>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📜 Dorks Used:</div>
+    <textarea id="dorkBox" readonly></textarea>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🔗 Generated Google Dork URLs:</div>
+    <textarea id="urlBox" readonly></textarea>
+    <div class="center">
+      <button id="openTabsBtn" onclick="openAllUrls()">Open All URLs in New Tabs</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🔗 Links:</div>
+    <textarea id="linksBox" readonly>
+https://cybersecuritywriteups.com/non-english-dorks-to-find-bug-bounty-vdp-programs-d799f0a5161c
+    </textarea>
+  </div>
+
+  <div class="section">
+    <div class="section-title">💡 Tips:</div>
+    <textarea id="tipsBox" readonly>
+Top sites security.txt (I will create a bash script to automate this section, and I will post it soon!)
+
+3-1. Download top 1000000 domains from https://radar.cloudflare.com/domains
+3-2. Check security.txt and .well-known/security.txt for main domain
+3-3. Store these two paths in a paths file.
+3-4. Run the two commands below:
+cat domains | httpx -path paths -mc 200 -cl -ct -o result1
+cat domains | while read d; do echo "www.$d"; done | httpx -path paths -mc 200 -cl -ct -o result2
+    </textarea>
+  </div>
+
+  <div class="credit">
+    🔗 Created by <a href="https://x.com/enterlectury" target="_blank">@enterlectury</a>
+  </div>
+
+  <script>
+    const dorks = [
+      '"Creative Commons Attribution" "vulnerability"',
+      '"Creative Commons Attribution" "security"',
+      '"Creative Commons Attribution" "offer"',
+      '"Creative Commons Attribution" "reward"',
+      '"Creative Commons Attribution" "token"',
+      '"Creative Commons Attribution" "bounty"',
+      '"Creative Commons Attribution" "certificate"',
+      '"Creative Commons Attribution" "hall of fame"',
+      '"Creative Commons Attribution" "wall of fame"',
+      '"Creative Commons Attribution" "gift"',
+      '"Creative Commons Attribution" "Email your findings"'
+    ];
+
+    let generatedUrls = [];
+
+    function generateUrls() {
+      const time = document.getElementById("timeFilter").value;
+      const urlBox = document.getElementById("urlBox");
+      const dorkBox = document.getElementById("dorkBox");
+
+      generatedUrls = [];
+      let urlText = "";
+      let dorkText = "";
+
+      dorks.forEach(dork => {
+        const encodedQuery = encodeURIComponent(dork);
+        const url = `https://www.google.com/search?q=${encodedQuery}&tbs=qdr:${time}`;
+        generatedUrls.push(url);
+        urlText += url + "\n";
+        dorkText += dork + "\n";
+      });
+
+      urlBox.value = urlText.trim();
+      dorkBox.value = dorkText.trim();
+    }
+
+    function openAllUrls() {
+      if (generatedUrls.length === 0) {
+        alert("Please generate URLs first!");
+        return;
+      }
+
+      generatedUrls.forEach((url, i) => {
+        setTimeout(() => {
+          window.open(url, '_blank');
+        }, i * 400);
+      });
+    }
+  </script>
+
+</body>
+</html>
