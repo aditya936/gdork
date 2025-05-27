@@ -1,6 +1,6 @@
 
 # This is built for to find latest program quickly ✅
-
+link : -> https://aditya936.github.io/gdork/pdorks/ 
 ------------------
 
 # 🔍 Bug Bounty Google Dork Finder
