@@ -11,6 +11,7 @@ ext:key PRIVATE KEY
 ext:trace.axd | ext:xml | ext:conf | ext:cnf | ext:reg | ext:ini
 ext:sql | ext:dbf | ext:mdb | ext:env | ext:sh | ext:log | ext:bak
 ext:backup | ext:swp | ext:old | ext:git | ext:svn | ext:htpasswd | ext:htaccess
+site:pastebin.com | site:paste2.org | site:pastehtml.com | site:slexy.org | site:snipplr.com | site:snipt.net | site:textsnip.com | site:bitpaste.app | site:justpaste.it | site:heypasteit.com | site:hastebin.com | site:dpaste.org | site:dpaste.com | site:codepad.org | site:jsitor.com | site:codepen.io | site:jsfiddle.net | site:dotnetfiddle.net | site:phpfiddle.org | site:ide.geeksforgeeks.org | site:repl.it | site:ideone.com | site:paste.debian.net | site:paste.org | site:paste.org.ru | site:codebeautify.org | site:codeshare.io | site:trello.com | site:stackoverflow.com
 
 
 
@@ -73,4 +74,6 @@ db.key OR server.key OR ftp.key OR exchange.key OR host.key OR mail.key
 intext:e10adc3949ba59abbe56e057f20f883e
 AndroidManifest ext:xml -github -gitlab -googlesource
 inurl:"plesk-stat" | intitle:"Control Panel" | intext:"GET http://" OR intext:"GET http://" ext:txt
+inurl:login | inurl:signin | intitle:Login | intitle:"sign in" | inurl:auth
+
 
